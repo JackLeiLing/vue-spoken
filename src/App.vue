@@ -1,6 +1,13 @@
 <template>
-  <v-app>
-    <v-navigation-drawer v-model="drawer" temporary color="blue" app dark>
+  <v-app id='app-spoken'>
+    <v-navigation-drawer
+    v-model="drawer"
+    temporary
+    color="blue"
+    app
+    dark
+    src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
+    >
       <v-list-item>
         <v-list-item-content>
           <v-list-item-title class="title">Spoken</v-list-item-title>
@@ -84,3 +91,8 @@ export default {
   }
 };
 </script>
+<style lang="scss">
+#app-spoken{
+  background-image: url('https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg')
+}
+</style>

@@ -2,6 +2,8 @@ import Vue from "vue";
 import Router from "vue-router";
 import Home from "./views/Home.vue";
 import Class from "./views/Class.vue";
+import Teachers from "./views/Teachers.vue";
+
 
 Vue.use(Router);
 
@@ -25,6 +27,11 @@ export default new Router({
       path: "/classes",
       name: "classes",
       component: Class
+    },
+    {
+      path: "/teachers",
+      name: "teachers",
+      component: Teachers
     }
   ]
 });
