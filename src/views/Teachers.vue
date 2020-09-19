@@ -10,15 +10,10 @@ export default {
     components:{
         CardTeacher
     },
-    data(){
-        return{
-            teachers:[]
+    computed: {
+        teachers(){
+            return this.$store.state.teachers
         }
-    },
-    created(){
-        teachersAPI.getTeachers().then((r)=>{
-            this.teachers = r
-        })
     }
 }
 </script>

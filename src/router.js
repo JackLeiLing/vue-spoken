@@ -3,6 +3,8 @@ import Router from "vue-router";
 import Home from "./views/Home.vue";
 import Class from "./views/Class.vue";
 import Teachers from "./views/Teachers.vue";
+import Teacher from "./views/Teacher.vue";
+
 
 
 Vue.use(Router);
@@ -32,6 +34,11 @@ export default new Router({
       path: "/teachers",
       name: "teachers",
       component: Teachers
+    },
+    {
+      path: "/teacher/:id",
+      name: "teacher",
+      component: Teacher
     }
   ]
 });

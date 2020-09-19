@@ -61,7 +61,15 @@
         text
         @click="reserve"
       >
+
         Contact
+      </v-btn>
+      <v-btn
+        color="deep-purple lighten-2"
+        text
+        @click="showTeacher(teacher.id)"
+      >
+        Details
       </v-btn>
     </v-card-actions>
   </v-card>
@@ -80,9 +88,11 @@
     methods: {
       reserve () {
         this.loading = true
-
         setTimeout(() => (this.loading = false), 2000)
       },
+      showTeacher(id){
+        this.$router.history.push(`/teacher/${id}`)
+      }
     },
   }
 </script>

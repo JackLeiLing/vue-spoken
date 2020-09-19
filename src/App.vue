@@ -1,12 +1,12 @@
 <template>
-  <v-app id='app-spoken'>
+  <v-app id="app-spoken">
     <v-navigation-drawer
-    v-model="drawer"
-    temporary
-    color="blue"
-    app
-    dark
-    src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
+      v-model="drawer"
+      temporary
+      color="blue"
+      app
+      dark
+      src="http://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
     >
       <v-list-item>
         <v-list-item-content>
@@ -85,14 +85,16 @@ export default {
   methods: {
     toggleDrawer() {
       this.drawer = !this.drawer;
-      console.log(this.drawer);
-
     }
+  },
+
+  created() {
+    this.$store.dispatch("getTeachers");
   }
 };
 </script>
 <style lang="scss">
-#app-spoken{
-  background-image: url('https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg')
+#app-spoken {
+  background-image: url("https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg");
 }
 </style>
