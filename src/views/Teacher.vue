@@ -23,6 +23,7 @@ export default {
   },
   methods: {
     updateTeacher({ value, objKey, id }) {
+
       this.$store.commit("updateTeachers", {
         id,
         objKey,

@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import teachersAPI from 'api-client/teachers'
+import _set from 'lodash/set'
 
 Vue.use(Vuex);
 
@@ -13,13 +14,9 @@ export default new Vuex.Store({
       state.teachers = payload
     },
     updateTeachers(state, { id, objKey, value }) {
-      let teachers = state.teachers.map(t => {
-        if (t.id === id) {
-          t[objKey] = value
-        }
-        return t
-      })
-      state.teachers = teachers
+      let teacher = state.teachers.find(t=>t.id===id)
+      _set(teacher,objKey,value)
+      state.teachers=[...state.teachers]
     }
   },
   actions: {
