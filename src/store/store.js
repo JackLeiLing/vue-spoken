@@ -12,10 +12,10 @@ export default new Vuex.Store({
     setTeachers(state, payload) {
       state.teachers = payload
     },
-    updateTeachers(state, { id, key, value }) {
+    updateTeachers(state, { id, objKey, value }) {
       let teachers = state.teachers.map(t => {
         if (t.id === id) {
-          t[key] = value
+          t[objKey] = value
         }
         return t
       })

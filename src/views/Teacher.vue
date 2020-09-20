@@ -1,28 +1,20 @@
 <template>
   <div class="editable-form white--text">
     <div :key="k" v-for="(v,k) in teacher">
-      <v-text-field
-        :label="k"
-        :value="v"
-        dark
-        class="white--text"
-        @change="updateTeacher($event,k)"
-      ></v-text-field>
+      <Field :id="teacher.id" :objKey="k" :value="v" @fieldChange="updateTeacher" />
     </div>
 
-    <div :key="k+1" v-for="(v,k) in teacher">
-      {{k}}:{{v}}
-
-    </div>
-
+    <div :key="k+1" v-for="(v,k) in teacher">{{k}}:{{v}}</div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
+import Field from "@/components/Field";
 
 export default {
   name: "TeacherView",
+  components: { Field },
   computed: {
     teacher() {
       let id = this.$route.params.id;
@@ -30,10 +22,10 @@ export default {
     }
   },
   methods: {
-    updateTeacher(value, key) {
+    updateTeacher({ value, objKey, id }) {
       this.$store.commit("updateTeachers", {
-        id: this.teacher.id,
-        key,
+        id,
+        objKey,
         value
       });
     }
