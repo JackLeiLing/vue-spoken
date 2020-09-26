@@ -26,6 +26,17 @@
       @fieldChange="onChange($event.value, $event.objKey, id)"
     />
   </div>
+  <div v-else-if="typeof value==='object'" class="field-group">
+    <h3>{{objKey}}</h3>
+    <Field
+      v-for="(v,k) in value"
+      :key="k"
+      :objKey="objKey+'.'+k"
+      :id="id"
+      :value="v"
+      @fieldChange="onChange($event.value, $event.objKey, id)"
+    />
+  </div>
 </template>
 <script>
 export default {

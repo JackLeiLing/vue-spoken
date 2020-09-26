@@ -1,11 +1,18 @@
 <template>
-  <div class="editable-form white--text">
-    <div :key="k" v-for="(v,k) in teacher">
-      <Field :id="teacher.id" :objKey="k" :value="v" @fieldChange="updateTeacher" />
-    </div>
+  <v-container class="editable-form white--text">
+    <v-row>
+      <v-col  cols="4" :key="k" v-for="(v, k) in teacher">
+        <Field
+          :id="teacher.id"
+          :objKey="k"
+          :value="v"
+          @fieldChange="updateTeacher"
+        />
+      </v-col>
+    </v-row>
 
-    <div :key="k+1" v-for="(v,k) in teacher">{{k}}:{{v}}</div>
-  </div>
+    <div :key="k + 1" v-for="(v, k) in teacher">{{ k }}:{{ v }}</div>
+  </v-container>
 </template>
 
 <script>
@@ -23,7 +30,6 @@ export default {
   },
   methods: {
     updateTeacher({ value, objKey, id }) {
-
       this.$store.commit("updateTeachers", {
         id,
         objKey,
