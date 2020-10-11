@@ -1,50 +1,62 @@
 <template>
   <v-text-field
-    v-if="typeof value === 'string'|| typeof value === 'number'"
-    :label="objKey"
+    v-if="typeof value === 'string' || typeof value === 'number'"
+    :label="label"
     :value="value"
     dark
     class="white--text"
-    @change="onChange($event,objKey,id)"
+    @change="onChange($event, objKey, id)"
+    :error-messages="error"
   ></v-text-field>
   <v-switch
     v-else-if="typeof value === 'boolean'"
-    :label="objKey"
+    :label="label"
     :value="value"
     dark
     class="white--text"
-    @change="onChange($event,objKey,id)"
+    @change="onChange($event, objKey, id)"
   ></v-switch>
   <div v-else-if="Array.isArray(value)" class="field-collection">
-    <h3>{{objKey}}</h3>
+    <h3>{{ label }}</h3>
     <Field
       v-for="(v, index) in value"
-      :objKey="objKey+'['+index+']'"
+      :objKey="objKey + '[' + index + ']'"
       :id="id"
       :value="v"
       :key="v"
+      :label="label+'-'+index"
       @fieldChange="onChange($event.value, $event.objKey, id)"
     />
   </div>
   <div v-else-if="typeof value==='object'" class="field-group">
-    <h3>{{objKey}}</h3>
+    <h3>{{label}}</h3>
     <Field
       v-for="(v,k) in value"
       :key="k"
       :objKey="objKey+'.'+k"
       :id="id"
       :value="v"
+      :label="keyToLabel[k]?keyToLabel[k]:k"
       @fieldChange="onChange($event.value, $event.objKey, id)"
     />
   </div>
 </template>
 <script>
 export default {
-  props: ["id", "objKey", "value"],
+  props: ["id", "objKey", "value","label","keyToLabel","validation"],
   name: "Field",
+  data(){
+    return {
+      error:null
+    }
+  },
   methods: {
     onChange(e, objKey, id) {
-
+      this.error=null
+      if(this.validation&&this.validation(e)){
+        this.error=this.validation(e)
+        return
+      }
       //v-switch is emitting null when it is off, need to convert it to false to set correct boolean value.
       if (e === null) {
         e = false;
