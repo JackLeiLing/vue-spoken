@@ -89,6 +89,7 @@ export default {
   },
 
   created() {
+    console.log('getting teachers')
     this.$store.dispatch("getTeachers");
   }
 };

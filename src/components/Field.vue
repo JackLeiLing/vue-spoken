@@ -1,11 +1,12 @@
 <template>
+<div>
   <v-text-field
     v-if="typeof value === 'string' || typeof value === 'number'"
     :label="label"
     :value="value"
     dark
     class="white--text"
-    @change="onChange($event, objKey, id)"
+    @change="onChange($event, objKey, id, value)"
     :error-messages="error"
   ></v-text-field>
   <v-switch
@@ -25,7 +26,7 @@
       :value="v"
       :key="v"
       :label="label+'-'+index"
-      @fieldChange="onChange($event.value, $event.objKey, id)"
+      @fieldChange="onChange($event.value, $event.objKey, id, value)"
     />
   </div>
   <div v-else-if="typeof value==='object'" class="field-group">
@@ -36,10 +37,12 @@
       :objKey="objKey+'.'+k"
       :id="id"
       :value="v"
-      :label="keyToLabel[k]?keyToLabel[k]:k"
-      @fieldChange="onChange($event.value, $event.objKey, id)"
+      :label="k"
+      @fieldChange="onChange($event.value, $event.objKey, id, 'hello')"
     />
   </div>
+</div>
+
 </template>
 <script>
 export default {
@@ -50,9 +53,14 @@ export default {
       error:null
     }
   },
+  mounted(){
+  },
+
   methods: {
-    onChange(e, objKey, id) {
+    onChange(e, objKey, id, value) {
       this.error=null
+
+
       if(this.validation&&this.validation(e)){
         this.error=this.validation(e)
         return

@@ -1,18 +1,8 @@
 <template>
   <v-container class="editable-form white--text">
-    <!-- <v-row>
-      <v-col  :cols="cols(v)" :key="k" v-for="(v, k) in teacher">
-        <Field
-          :id="teacher.id"
-          :objKey="k"
-          :value="v"
-          @fieldChange="updateTeacher"
-        />
-      </v-col>
-    </v-row> -->
-    <v-row>
+    <v-row v-if="teacher">
       <v-col v-for="field in teacherForm" :key="field.apiKey">
-         <Field
+        <Field
           :id="teacherID"
           :objKey="field.apiKey"
           :label="field.label"
@@ -34,47 +24,63 @@ import Field from "@/components/Field";
 import teacherDef from "@/api/data/teacherDef";
 import _merge from "lodash/merge";
 import _get from "lodash/get";
+import _cloneDeep from "lodash/cloneDeep"
 
 export default {
   name: "TeacherView",
   components: { Field },
-  computed: {
-    teacherID(){
-      return  this.$route.params.id;
-    },
-    teacher() {
+  mounted() {
+
       let id = this.$route.params.id;
-      return _merge(teacherDef,this.$store.getters.getTeacherByID(id));
-    },
-    teacherForm(){
-      return [
+      console.log(this.$store.state.teachers,'teachers')
+      let teacherInStore=this.$store.state.teachers.find(teacher => teacher.id === id)
+
+      const teacher = _cloneDeep(teacherDef)
+      let teacherData = _merge(
+        teacher,
+        teacherInStore
+      );
+      this.teacher = {...teacherData};
+
+  },
+  data() {
+    return {
+      teacherForm: [
         {
-          apiKey:'firstName',
-          label:'First name',
-          validation(v){
-            if(v.length>10){
-              return 'Name length can not be longer than 10'
+          apiKey: "firstName",
+          label: "First name",
+          validation(v) {
+            if (v.length > 10) {
+              return "Name length can not be longer than 10";
             }
-          }
-        },
-         {
-          apiKey:'lastName',
-          label:'Last name'
-        },
-         {
-          apiKey:'students',
-          label:'Students'
+          },
         },
         {
-          apiKey:'address',
-          label:'Address',
-          keyToLabel:{
-            street:'Street',
-            state:'State'
-          }
+          apiKey: "lastName",
+          label: "Last name",
+        },
+        {
+          apiKey: "students",
+          label: "Students",
+        },
+        {
+          apiKey: "address",
+          label: "Address",
+          keyToLabel: {
+            street: "Street",
+            state: "State"
+          },
         }
-      ]
+      ],
+      teacher:{}
+    };
+  },
+
+  computed: {
+    teacherID() {
+      return this.$route.params.id;
     }
+
   },
   methods: {
     updateTeacher({ value, objKey, id }) {
@@ -84,16 +90,15 @@ export default {
         value
       });
     },
-    cols(v){
-      if(typeof v === 'object'|| Array.isArray(v)){
-        return '12'
+    cols(v) {
+      if (typeof v === "object" || Array.isArray(v)) {
+        return "12";
       }
-      return '3'
+      return "3";
     },
-    getFieldValue(obj, key){
-      return _get(obj, key)
+    getFieldValue(obj, key) {
+      return _get(obj, key);
     }
-
   }
 };
 </script>

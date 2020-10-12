@@ -7,7 +7,7 @@ export default [
         image: 'https://bbts1.azureedge.net/images/p/full/2020/07/4dbb5cf7-f185-47ff-8467-c67ca7072571.jpg',
         students: [1, 3],
         available: true,
-        address: { street: "1 George St", suburb: "Baulkham Hills", state: "NSW", postCode: 2153 }
+        address: { street: "1", suburb: "Baulkham Hills", state: "NSW", postCode: 2153 }
     },
     {
         id: 'b',
