@@ -31,16 +31,7 @@ export default {
   components: { Field },
   mounted() {
 
-      let id = this.$route.params.id;
-      console.log(this.$store.state.teachers,'teachers')
-      let teacherInStore=this.$store.state.teachers.find(teacher => teacher.id === id)
 
-      const teacher = _cloneDeep(teacherDef)
-      let teacherData = _merge(
-        teacher,
-        teacherInStore
-      );
-      this.teacher = {...teacherData};
 
   },
   data() {
@@ -72,18 +63,29 @@ export default {
           },
         }
       ],
-      teacher:{}
     };
   },
 
   computed: {
     teacherID() {
       return this.$route.params.id;
+    },
+    teacher(){
+        let id = this.$route.params.id;
+      let selectedTeacher = this.$store.getters.getTeacherByID(id)
+
+      const t = _cloneDeep(teacherDef)
+      let teacherData = _merge(
+        t,
+        selectedTeacher
+      );
+      return teacherData
     }
 
   },
   methods: {
     updateTeacher({ value, objKey, id }) {
+      console.log(value)
       this.$store.commit("updateTeachers", {
         id,
         objKey,
