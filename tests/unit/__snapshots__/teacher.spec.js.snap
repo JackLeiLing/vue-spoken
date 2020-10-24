@@ -1,0 +1,111 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`teacher.vue renders teacher form 1`] = `
+<div class="container editable-form white--text">
+  <div class="row">
+    <div class="col">
+      <div>
+        <div class="v-input white--text theme--dark v-text-field">
+          <div class="v-input__control">
+            <div class="v-input__slot">
+              <div class="v-text-field__slot"><label for="input-5" class="v-label theme--dark" style="right: 0px; position: absolute;">First name</label><input id="input-5" type="text"></div>
+            </div>
+            <div class="v-text-field__details">
+              <div class="v-messages theme--dark"><span name="message-transition" tag="div" class="v-messages__wrapper"></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div>
+        <div class="v-input white--text theme--dark v-text-field">
+          <div class="v-input__control">
+            <div class="v-input__slot">
+              <div class="v-text-field__slot"><label for="input-9" class="v-label theme--dark" style="right: 0px; position: absolute;">Last name</label><input id="input-9" type="text"></div>
+            </div>
+            <div class="v-text-field__details">
+              <div class="v-messages theme--dark"><span name="message-transition" tag="div" class="v-messages__wrapper"></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div>
+        <div class="field-collection">
+          <h3>Students</h3>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div>
+        <div class="field-group">
+          <h3>Address</h3>
+          <div>
+            <div class="v-input white--text theme--dark v-text-field">
+              <div class="v-input__control">
+                <div class="v-input__slot">
+                  <div class="v-text-field__slot"><label for="input-15" class="v-label theme--dark" style="right: 0px; position: absolute;">street</label><input id="input-15" type="text"></div>
+                </div>
+                <div class="v-text-field__details">
+                  <div class="v-messages theme--dark"><span name="message-transition" tag="div" class="v-messages__wrapper"></span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="v-input white--text theme--dark v-text-field">
+              <div class="v-input__control">
+                <div class="v-input__slot">
+                  <div class="v-text-field__slot"><label for="input-19" class="v-label theme--dark" style="right: 0px; position: absolute;">suburb</label><input id="input-19" type="text"></div>
+                </div>
+                <div class="v-text-field__details">
+                  <div class="v-messages theme--dark"><span name="message-transition" tag="div" class="v-messages__wrapper"></span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="v-input white--text theme--dark v-text-field">
+              <div class="v-input__control">
+                <div class="v-input__slot">
+                  <div class="v-text-field__slot"><label for="input-23" class="v-label theme--dark" style="right: 0px; position: absolute;">state</label><input id="input-23" type="text"></div>
+                </div>
+                <div class="v-text-field__details">
+                  <div class="v-messages theme--dark"><span name="message-transition" tag="div" class="v-messages__wrapper"></span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="v-input white--text theme--dark v-text-field">
+              <div class="v-input__control">
+                <div class="v-input__slot">
+                  <div class="v-text-field__slot"><label for="input-27" class="v-label theme--dark" style="right: 0px; position: absolute;">postCode</label><input id="input-27" type="text"></div>
+                </div>
+                <div class="v-text-field__details">
+                  <div class="v-messages theme--dark"><span name="message-transition" tag="div" class="v-messages__wrapper"></span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>id:</div>
+  <div>firstName:</div>
+  <div>lastName:</div>
+  <div>nativeLanguage:</div>
+  <div>image:</div>
+  <div>students:[]</div>
+  <div>available:</div>
+  <div>address:{
+    "street": "",
+    "suburb": "",
+    "state": "",
+    "postCode": ""
+    }</div>
+</div>
+`;
