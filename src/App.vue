@@ -18,7 +18,12 @@
       <v-divider></v-divider>
 
       <v-list dense nav>
-        <v-list-item v-for="item in items" :key="item.title" link :to="item.link">
+        <v-list-item
+          v-for="item in items"
+          :key="item.title"
+          link
+          :to="item.link"
+        >
           <v-list-item-icon>
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-item-icon>
@@ -30,13 +35,14 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-container fluid class="pt-0">
+    <v-container fluid class="pt-0 pb-0">
       <v-row>
-        <v-toolbar
+        <v-app-bar
           dark
           :extended="barExtended"
           class="text--white"
           src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
+          fixed
         >
           <v-app-bar-nav-icon @click="toggleDrawer"></v-app-bar-nav-icon>
 
@@ -55,11 +61,11 @@
           <v-btn icon>
             <v-icon>mdi-dots-vertical</v-icon>
           </v-btn>
-        </v-toolbar>
+        </v-app-bar>
       </v-row>
     </v-container>
 
-    <v-container>
+    <v-container class="pt-0">
       <v-row>
         <router-view />
       </v-row>
@@ -89,13 +95,15 @@ export default {
   },
 
   created() {
-    console.log('getting teachers')
+    console.log("getting teachers");
     this.$store.dispatch("getTeachers");
   }
 };
 </script>
 <style lang="scss">
+@import "@/scss/app.scss";
 #app-spoken {
   background-image: url("https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg");
+  background-size: cover;
 }
 </style>
