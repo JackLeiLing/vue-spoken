@@ -3,9 +3,16 @@
     <section id="about-us-section" class="full-vh" ref="aboutUs">
       <h2 ref="aboutUsTitle" class="text-h1">who we are</h2>
       <p>we are an online teaching platform</p>
+
     </section>
     <section id="teachers-section" class="full-vh">
       <h2>Teachers</h2>
+      <List :items="teachers">
+        <template v-slot:item="{ item }">
+         <card-brief :item="item"/>
+         <!-- <card-teacher :teacher="item"/> -->
+        </template>
+      </List>
     </section>
     <section id="students-section" class="full-vh">
       <h2>Students</h2>
@@ -14,17 +21,33 @@
 </template>
 
 <script>
+import List from "@/components/List";
+import CardBrief from "@/components/CardBrief";
+import CardTeacher from "@/components/CardTeacher"
 export default {
-  mounted(){
-    document.addEventListener('scroll',()=>{
-      let windowScrollYDistance = window.scrollY
-      if(windowScrollYDistance>(this.$refs.aboutUs.getBoundingClientRect().height+65)){
-        this.$refs.aboutUsTitle.style.opacity=0
-      }else{
-        this.$refs.aboutUsTitle.style.opacity=1-windowScrollYDistance/(this.$refs.aboutUs.getBoundingClientRect().height)
+  components: { List, CardBrief, CardTeacher },
+  mounted() {
+    document.addEventListener("scroll", () => {
+      let windowScrollYDistance = window.scrollY;
+      if (
+        windowScrollYDistance >
+        this.$refs.aboutUs.getBoundingClientRect().height + 65
+      ) {
+        this.$refs.aboutUsTitle.style.opacity = 0;
+      } else {
+        this.$refs.aboutUsTitle.style.opacity =
+          1 -
+          windowScrollYDistance /
+            this.$refs.aboutUs.getBoundingClientRect().height;
       }
-    })
-  }
+    });
+  },
+
+  computed: {
+    teachers() {
+      return this.$store.state.teachers;
+    },
+  },
 };
 </script>
 
@@ -34,7 +57,6 @@ export default {
   background-size: cover;
   background-attachment: fixed;
   color: #fff;
-  border: 1px solid white;
   border-bottom: 0;
   display: flex;
   justify-content: center;
@@ -42,9 +64,6 @@ export default {
   flex-direction: column;
   &:first-child {
     margin-top: 65px;
-  }
-  &:last-child {
-    border-bottom: 1px solid white;
   }
 }
 #about-us-section {
@@ -66,7 +85,6 @@ export default {
 }
 
 #students-section {
-
   background-image: radial-gradient(
       circle,
       rgba(2, 0, 36, 0.116) 0%,
