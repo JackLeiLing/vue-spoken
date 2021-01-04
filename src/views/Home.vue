@@ -3,19 +3,19 @@
     <section id="about-us-section" class="full-vh" ref="aboutUs">
       <h2 ref="aboutUsTitle" class="text-h1">who we are</h2>
       <p>we are an online teaching platform</p>
-
     </section>
     <section id="teachers-section" class="full-vh">
       <h2>Teachers</h2>
       <List :items="teachers">
         <template v-slot:item="{ item }">
-         <card-brief :item="item"/>
-         <!-- <card-teacher :teacher="item"/> -->
+          <card-brief :item="item" v-animate-onscroll="{down: 'animated rotateIn', up: 'animated rotateOut' }"/>
         </template>
       </List>
     </section>
     <section id="students-section" class="full-vh">
-      <h2>Students</h2>
+      <h2 >Students</h2>
+      <div v-animate-onscroll="'animated flip'">Animate me once upon scroll</div>
+
     </section>
   </div>
 </template>
@@ -23,7 +23,7 @@
 <script>
 import List from "@/components/List";
 import CardBrief from "@/components/CardBrief";
-import CardTeacher from "@/components/CardTeacher"
+import CardTeacher from "@/components/CardTeacher";
 export default {
   components: { List, CardBrief, CardTeacher },
   mounted() {
@@ -34,11 +34,13 @@ export default {
         this.$refs.aboutUs.getBoundingClientRect().height + 65
       ) {
         this.$refs.aboutUsTitle.style.opacity = 0;
+        this.$refs.aboutUsTitle.style.transform = "scale(0.5)";
       } else {
-        this.$refs.aboutUsTitle.style.opacity =
-          1 -
+        let scrollOffset =
           windowScrollYDistance /
-            this.$refs.aboutUs.getBoundingClientRect().height;
+          this.$refs.aboutUs.getBoundingClientRect().height;
+        this.$refs.aboutUsTitle.style.opacity = 1 - scrollOffset;
+        this.$refs.aboutUsTitle.style.transform = `scale(${1-scrollOffset})`;
       }
     });
   },
@@ -53,7 +55,7 @@ export default {
 
 <style lang="scss" scoped>
 .full-vh {
-  height: calc(100vh - 66px);
+  height: calc(100vh - 64px);
   background-size: cover;
   background-attachment: fixed;
   color: #fff;
@@ -62,9 +64,6 @@ export default {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  &:first-child {
-    margin-top: 65px;
-  }
 }
 #about-us-section {
   background-image: radial-gradient(
@@ -72,7 +71,9 @@ export default {
       rgba(2, 0, 36, 0.116) 0%,
       rgb(25, 25, 173) 100%
     ),
-    url(https://www.smartertravel.com/uploads/2020/03/ST_ZoomBackground_Beach02.jpg);
+    url(../assets/beach.jpg);
+  background-size: cover;
+  background-position: center;
 }
 
 #teachers-section {
@@ -81,7 +82,9 @@ export default {
       rgba(2, 0, 36, 0.116) 0%,
       rgb(25, 25, 173) 100%
     ),
-    url(https://static.parade.com/wp-content/uploads/2020/04/zoom.jpg);
+    url(../assets/teacher.jpg);
+  background-size: cover;
+  background-position: center;
 }
 
 #students-section {
@@ -90,6 +93,8 @@ export default {
       rgba(2, 0, 36, 0.116) 0%,
       rgb(25, 25, 173) 100%
     ),
-    url(https://www.smartertravel.com/uploads/2020/03/ST_ZoomBackground_Beach03.jpg);
+    url(../assets/beach-people.jpg);
+  background-size: cover;
+  background-position: center;
 }
 </style>

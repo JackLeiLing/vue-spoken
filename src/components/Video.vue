@@ -30,9 +30,6 @@ export default {
     },
     handleSuccess(stream) {
       const video = this.$refs.myVideo;
-      window.stream = stream; // make variable available to browser console
-      console.log(video.srcObject);
-      console.log(stream);
       video.srcObject = stream;
     }
   }

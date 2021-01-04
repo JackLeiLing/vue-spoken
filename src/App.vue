@@ -65,8 +65,8 @@
       </v-row>
     </v-container>
 
-    <v-container class="pt-0">
-      <v-row>
+    <v-container class="pa-0">
+      <v-row class="pt-16">
         <router-view />
       </v-row>
     </v-container>
@@ -95,7 +95,6 @@ export default {
   },
 
   created() {
-    console.log("getting teachers");
     this.$store.dispatch("getTeachers");
   }
 };

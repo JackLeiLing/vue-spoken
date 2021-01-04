@@ -3,8 +3,12 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store/store";
 import vuetify from './plugins/vuetify';
+import VueAnimateOnScroll from 'vue-animate-onscroll'
+
 
 Vue.config.productionTip = false;
+
+Vue.use(VueAnimateOnScroll)
 
 new Vue({
   router,
