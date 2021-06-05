@@ -5,8 +5,6 @@ import Class from "./views/Class.vue";
 import Teachers from "./views/Teachers.vue";
 import Teacher from "./views/Teacher.vue";
 
-
-
 Vue.use(Router);
 
 export default new Router({

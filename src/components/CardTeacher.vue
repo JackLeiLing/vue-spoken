@@ -1,21 +1,11 @@
 <template>
-  <v-card
-    :loading="loading"
-    class="mx-auto my-12"
-    max-width="374"
-  >
-    <v-img
-      height="250"
-      :src='teacher.image'
-    ></v-img>
+  <v-card :loading="loading" class="mx-auto my-12" max-width="374">
+    <v-img height="250" :src="teacher.image"></v-img>
 
-    <v-card-title>{{teacher.firstName }} {{teacher.lastName}}</v-card-title>
+    <v-card-title>{{ teacher.firstName }} {{ teacher.lastName }}</v-card-title>
 
     <v-card-text>
-      <v-row
-        align="center"
-        class="mx-0"
-      >
+      <v-row align="center" class="mx-0">
         <v-rating
           :value="4.5"
           color="amber"
@@ -29,10 +19,10 @@
       </v-row>
 
       <div class="my-4 subtitle-1">
-       {{teacher.nativeLanguage}}
+        {{ teacher.nativeLanguage }}
       </div>
 
-      <div>{{teacher.summary}}</div>
+      <div>{{ teacher.summary }}</div>
     </v-card-text>
 
     <v-divider class="mx-4"></v-divider>
@@ -56,12 +46,7 @@
     </v-card-text>
 
     <v-card-actions>
-      <v-btn
-        color="deep-purple lighten-2"
-        text
-        @click="reserve"
-      >
-
+      <v-btn color="deep-purple lighten-2" text @click="reserve">
         Contact
       </v-btn>
       <v-btn
@@ -76,23 +61,23 @@
 </template>
 
 <script>
-  export default {
-    props:{
-        teacher:Object
-    },
-    data: () => ({
-      loading: false,
-      selection: 1,
-    }),
+export default {
+  props: {
+    teacher: Object
+  },
+  data: () => ({
+    loading: false,
+    selection: 1
+  }),
 
-    methods: {
-      reserve () {
-        this.loading = true
-        setTimeout(() => (this.loading = false), 2000)
-      },
-      showTeacher(id){
-        this.$router.history.push(`/teacher/${id}`)
-      }
+  methods: {
+    reserve() {
+      this.loading = true;
+      setTimeout(() => (this.loading = false), 2000);
     },
+    showTeacher(id) {
+      this.$router.history.push(`/teacher/${id}`);
+    }
   }
+};
 </script>

@@ -24,35 +24,34 @@ import Field from "@/components/Field";
 import teacherDef from "@/api/data/teacherDef";
 import _merge from "lodash/merge";
 import _get from "lodash/get";
-import _cloneDeep from "lodash/cloneDeep"
+import _cloneDeep from "lodash/cloneDeep";
 
 export default {
   name: "TeacherView",
   components: { Field },
-  mounted() {
-
-
-
-  },
+  mounted() {},
   data() {
     return {
       teacherForm: [
         {
           apiKey: "firstName",
           label: "First name",
-          validation(v) {
+          validation(v, t) {
+            if(t.address.state==='NSW'){
+              return "can't live in NSW"
+            }
             if (v.length > 10) {
               return "Name length can not be longer than 10";
             }
-          },
+          }
         },
         {
           apiKey: "lastName",
-          label: "Last name",
+          label: "Last name"
         },
         {
           apiKey: "students",
-          label: "Students",
+          label: "Students"
         },
         {
           apiKey: "address",
@@ -60,9 +59,13 @@ export default {
           keyToLabel: {
             street: "Street",
             state: "State"
-          },
+          }
+        },
+        {
+          apiKey: "available",
+          label: "Available"
         }
-      ],
+      ]
     };
   },
 
@@ -70,22 +73,17 @@ export default {
     teacherID() {
       return this.$route.params.id;
     },
-    teacher(){
-        let id = this.$route.params.id;
-      let selectedTeacher = this.$store.getters.getTeacherByID(id)
+    teacher() {
+      let id = this.$route.params.id;
+      let selectedTeacher = this.$store.getters.getTeacherByID(id);
 
-      const t = _cloneDeep(teacherDef)
-      let teacherData = _merge(
-        t,
-        selectedTeacher
-      );
-      return teacherData
+      const t = _cloneDeep(teacherDef);
+      let teacherData = _merge(t, selectedTeacher);
+      return teacherData;
     }
-
   },
   methods: {
     updateTeacher({ value, objKey, id }) {
-      console.log(value)
       this.$store.commit("updateTeachers", {
         id,
         objKey,

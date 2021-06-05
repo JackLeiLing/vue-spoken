@@ -12,7 +12,6 @@ export default {
   methods: {
     getPermissions() {
       this.status = "FETCHING";
-      const vm = this;
       navigator.mediaDevices
         .getUserMedia({
           video: true,
@@ -55,7 +54,7 @@ li {
 a {
   color: #42b983;
 }
-video{
-  border:1px solid green;
+video {
+  border: 1px solid green;
 }
 </style>

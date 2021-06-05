@@ -1,11 +1,9 @@
 <template>
-<v-btn>Button</v-btn>
+  <v-btn>Button</v-btn>
 </template>
 
 <script>
-
 export default {
-  components: {
-  },
+  components: {}
 };
 </script>
