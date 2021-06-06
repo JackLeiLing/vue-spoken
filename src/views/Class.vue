@@ -1,15 +1,15 @@
 <template>
   <div>
-    <Video/>
+    <Video />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import Video from "@/components/Video"
+import Video from "@/components/Video";
 
 export default {
   name: "class",
-  components:{Video}
+  components: { Video }
 };
 </script>

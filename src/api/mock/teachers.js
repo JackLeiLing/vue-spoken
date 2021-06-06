@@ -1,4 +1,4 @@
-import teachersData from '../data/teachers'
+import teachersData from "../data/teachers";
 
 const getTeachers=()=> new Promise(resolve => {
 
@@ -6,5 +6,4 @@ const getTeachers=()=> new Promise(resolve => {
 
 });
 
-
-export default {getTeachers}
+export default { getTeachers };
