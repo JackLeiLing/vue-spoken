@@ -31,26 +31,5 @@ export default [
     available: true,
     address: { street: "1", suburb: "Baulkham Hills", state: "NSW", postCode: 2153 },
     rating: 4.5
-
-  },
-  {
-    id: "b",
-    firstName: "Aaron",
-    lastName: "Ling",
-    nativeLanguage: "English",
-    image:
-      "https://www.syfy.com/sites/syfy/files/styles/1200x680_hero/public/2019/07/spider-man.jpg",
-    students: [1],
-    available: false
-  },
-  {
-    id: "c",
-    firstName: "Yan",
-    lastName: "Qu",
-    nativeLanguage: "Mandarin",
-    image:
-      "https://external-preview.redd.it/rVfjf9l7_iGFFV9x7352PpAb2eCCh4MCZvzPX1atciI.jpg?auto=webp&s=98e240bd52d02e22ba6c36f1609fc5097ee2767e",
-    students: [2, 1],
-    available: true
   }
 ];
