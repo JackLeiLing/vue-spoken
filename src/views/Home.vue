@@ -1,7 +1,7 @@
 <template>
   <div class="full-width">
     <section id="about-us-section" class="full-vh" ref="aboutUs">
-      <h2 ref="aboutUsTitle" class="text-h1">who we are</h2>
+      <h2 ref="aboutUsTitle" class="text-h1" v-sparkles>who we are</h2>
       <p>we are an online teaching platform</p>
     </section>
     <section id="teachers-section" class="full-vh">
@@ -27,22 +27,22 @@ import CardTeacher from "@/components/CardTeacher";
 export default {
   components: { List, CardBrief, CardTeacher },
   mounted() {
-    document.addEventListener("scroll", () => {
-      let windowScrollYDistance = window.scrollY;
-      if (
-        windowScrollYDistance >
-        this.$refs.aboutUs.getBoundingClientRect().height + 65
-      ) {
-        this.$refs.aboutUsTitle.style.opacity = 0;
-        this.$refs.aboutUsTitle.style.transform = "scale(0.5)";
-      } else {
-        let scrollOffset =
-          windowScrollYDistance /
-          this.$refs.aboutUs.getBoundingClientRect().height;
-        this.$refs.aboutUsTitle.style.opacity = 1 - scrollOffset;
-        this.$refs.aboutUsTitle.style.transform = `scale(${1-scrollOffset})`;
-      }
-    });
+    // document.addEventListener("scroll", () => {
+    //   let windowScrollYDistance = window.scrollY;
+    //   if (
+    //     windowScrollYDistance >
+    //     this.$refs.aboutUs.getBoundingClientRect().height + 65
+    //   ) {
+    //     this.$refs.aboutUsTitle.style.opacity = 0;
+    //     this.$refs.aboutUsTitle.style.transform = "scale(0.5)";
+    //   } else {
+    //     let scrollOffset =
+    //       windowScrollYDistance /
+    //       this.$refs.aboutUs.getBoundingClientRect().height;
+    //     this.$refs.aboutUsTitle.style.opacity = 1 - scrollOffset;
+    //     this.$refs.aboutUsTitle.style.transform = `scale(${1-scrollOffset})`;
+    //   }
+    // });
   },
 
   computed: {
