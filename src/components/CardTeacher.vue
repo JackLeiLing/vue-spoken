@@ -18,7 +18,7 @@
         class="mx-0"
       >
         <v-rating
-          :value="4.5"
+          :value="teacher.rating"
           color="amber"
           dense
           half-increments
@@ -26,7 +26,7 @@
           size="14"
         ></v-rating>
 
-        <div class="grey--text ml-4">4.5 (413)</div>
+        <div class="grey--text ml-4">{{teacher.rating}}</div>
       </v-row>
 
       <div class="my-4 subtitle-1">

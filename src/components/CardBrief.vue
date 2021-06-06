@@ -9,7 +9,7 @@
       <v-col cols="8">
         <v-card-title>
           <div>
-            <div class="headline">My Subject</div>
+            <div class="headline">Minecraft</div>
             <div>{{ item.firstName + " " + item.lastName }}</div>
             <div>{{ item.address.state }}</div>
           </div>

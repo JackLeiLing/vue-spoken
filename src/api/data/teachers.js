@@ -18,7 +18,7 @@ export default [
         image: 'https://www.syfy.com/sites/syfy/files/styles/1200x680_hero/public/2019/07/spider-man.jpg',
         students: [1],
         available: false,
-        rating: 4.5,
+        rating: 2,
         address: { street: "1", suburb: "Baulkham Hills", state: "NSW", postCode: 2153 },
     },
     {
