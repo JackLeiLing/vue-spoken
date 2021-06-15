@@ -5,9 +5,12 @@ import Class from "./views/Class.vue";
 import Teachers from "./views/Teachers.vue";
 import Teacher from "./views/Teacher.vue";
 
+import { authGuard } from "./auth/authGuard";
+
 Vue.use(Router);
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: "/",
@@ -26,17 +29,20 @@ export default new Router({
     {
       path: "/classes",
       name: "classes",
-      component: Class
+      component: Class,
+      beforeEnter: authGuard
     },
     {
       path: "/teachers",
       name: "teachers",
-      component: Teachers
+      component: Teachers,
+      beforeEnter: authGuard
     },
     {
       path: "/teacher/:id",
       name: "teacher",
-      component: Teacher
+      component: Teacher,
+      beforeEnter: authGuard
     }
   ]
 });

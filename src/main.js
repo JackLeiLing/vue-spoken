@@ -3,6 +3,7 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store/store";
 import vuetify from "./plugins/vuetify";
+import VueAnimateOnScroll from 'vue-animate-onscroll'
 
 // Import the Auth0 configuration
 import { domain, clientId } from "./auth_config.json";
@@ -15,6 +16,7 @@ Vue.use(Auth0Plugin, {
   domain,
   clientId,
   onRedirectCallback: appState => {
+    console.log(appState)
     router.push(
       appState && appState.targetUrl
         ? appState.targetUrl
@@ -26,7 +28,6 @@ Vue.use(Auth0Plugin, {
 Vue.config.productionTip = false;
 
 Vue.use(VueAnimateOnScroll)
-Vue.use(sparkles)
 
 new Vue({
   router,

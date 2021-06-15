@@ -33,6 +33,7 @@ export const useAuth0 = ({
     methods: {
       /** Authenticates the user using a popup window */
       async loginWithPopup(options, config) {
+        console.log('login with popup')
         this.popupOpen = true;
 
         try {
@@ -51,7 +52,7 @@ export const useAuth0 = ({
         this.user = await this.auth0Client.getUser();
         this.isAuthenticated = true;
       },
-      /** Handles the callback when logging in using a redirect */
+      // /** Handles the callback when logging in using a redirect */
       async handleRedirectCallback() {
         this.loading = true;
         try {

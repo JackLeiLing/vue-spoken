@@ -19,7 +19,7 @@
 
       <v-list dense nav>
         <v-list-item
-          v-for="item in items"
+          v-for="item in navLinks"
           :key="item.title"
           link
           :to="item.link"
@@ -54,15 +54,13 @@
             <v-icon>mdi-magnify</v-icon>
           </v-btn>
 
-          <v-btn icon>
-            <v-icon>mdi-heart</v-icon>
-          </v-btn>
+         
 
           <v-btn icon>
             <v-icon>mdi-dots-vertical</v-icon>
           </v-btn>
 
-                <!-- Check that the SDK client is not currently loading before accessing is methods -->
+            <!-- Check that the SDK client is not currently loading before accessing is methods -->
           <span v-if="!$auth.loading">
             <!-- show login when not authenticated -->
             <button v-if="!$auth.isAuthenticated" @click="login">Log in</button>
@@ -101,13 +99,24 @@ export default {
     return {
       drawer: false,
       barExtended: false,
-      items: [
+      
+    };
+  },
+  computed: {
+    navLinks () {
+     if(this.$auth.isAuthenticated)
+      {
+        return [
         { title: "Home", icon: "mdi-home", link: "/" },
         { title: "Teachers", icon: "mdi-teach", link: "/teachers" },
         { title: "Students", icon: "mdi-school", link: "/students" },
         { title: "Classes", icon: "mdi-account-group", link: "/classes" }
       ]
-    };
+      }
+      return [
+        { title: "Home", icon: "mdi-home", link: "/" },
+      ]
+    }
   },
   methods: {
     toggleDrawer() {
