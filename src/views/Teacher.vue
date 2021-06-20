@@ -15,6 +15,12 @@
     </v-row>
 
     <div :key="k + 1" v-for="(v, k) in teacher">{{ k }}:{{ v }}</div>
+    
+    <pre>
+      {{teachers}}
+    </pre>
+    <img src="../assets/whoKnowsLogo.svg"/>
+    
   </v-container>
 </template>
 
@@ -28,7 +34,7 @@ import _cloneDeep from "lodash/cloneDeep";
 
 export default {
   name: "TeacherView",
-  components: { Field },
+  components: { Field},
   mounted() {},
   data() {
     return {
@@ -80,6 +86,9 @@ export default {
       const t = _cloneDeep(teacherDef);
       let teacherData = _merge(t, selectedTeacher);
       return teacherData;
+    },
+    teachers() {
+      return this.$store.getters.teachers
     }
   },
   methods: {

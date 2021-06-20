@@ -34,6 +34,7 @@ export default new Vuex.Store({
   getters: {
     getTeacherByID: state => id => {
       return state.teachers.find(teacher => teacher.id === id);
-    }
+    },
+    teachers: state => state.teachers
   }
 });
