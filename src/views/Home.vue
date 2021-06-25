@@ -1,7 +1,10 @@
 <template>
   <div class="full-width">
     <section id="about-us-section" class="full-vh" ref="aboutUs">
-      <h2 ref="aboutUsTitle" class="text-h1">who we are</h2>
+      <h2 ref="aboutUsTitle" class="text-h1">
+        <img src="../assets/whoKnowsLogo.svg" width="60px"/>
+        who knows
+      </h2>
       <p>we are an online teaching platform</p>
     </section>
     <section id="teachers-section" class="full-vh">
@@ -26,7 +29,6 @@ import CardBrief from "@/components/CardBrief";
 import CardTeacher from "@/components/CardTeacher";
 export default {
   components: { List, CardBrief, CardTeacher },
-
   computed: {
     teachers() {
       return this.$store.state.teachers;

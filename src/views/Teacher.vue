@@ -1,113 +1,105 @@
 <template>
   <v-container class="editable-form white--text">
+
     <v-row v-if="teacher">
-      <v-col v-for="field in teacherForm" :key="field.apiKey">
-        <Field
-          :id="teacherID"
-          :objKey="field.apiKey"
-          :label="field.label"
-          :value="getFieldValue(teacher, field.apiKey)"
-          @fieldChange="updateTeacher"
-          :keyToLabel="field.keyToLabel"
-          :validation="field.validation"
-        />
+      <v-col>
+        <label>
+          First Name:
+          <input
+            type="text"
+            v-model="teacher.firstName"
+            :class="hasError('teacher.firstName')?'input--error':''"
+            @change="checkForm"
+            ref="teacher.firstName"
+          />
+        </label>
+      </v-col>
+      <v-col>
+        <label>
+          Last Name:
+          <input
+            type="text"
+            v-model="teacher.lastName"
+            class="white--text"
+            :class="hasError('teacher.lastName')?'input--error':''"
+            @change="checkForm"
+            ref="teacher.lastName"
+          />
+        </label>
       </v-col>
     </v-row>
 
-    <div :key="k + 1" v-for="(v, k) in teacher">{{ k }}:{{ v }}</div>
-    
-    <pre>
-      {{teachers}}
-    </pre>
-    <img src="../assets/whoKnowsLogo.svg"/>
-    
+     <v-row>
+      <ul>
+        <li v-for="(e, i) in errors" :key="i">
+          <button @click="focusError(e)">{{e.message}}</button>
+        </li>
+      </ul>
+    </v-row>
+
+    <v-row>
+      <pre>
+        {{ teacher }}
+      </pre>
+    </v-row>
   </v-container>
 </template>
 
 <script>
-// @ is an alias to /src
-import Field from "@/components/Field";
-import teacherDef from "@/api/data/teacherDef";
-import _merge from "lodash/merge";
-import _get from "lodash/get";
-import _cloneDeep from "lodash/cloneDeep";
-
 export default {
-  name: "TeacherView",
-  components: { Field},
-  mounted() {},
+  name: 'TeacherView',
   data() {
     return {
-      teacherForm: [
-        {
-          apiKey: "firstName",
-          label: "First name",
-          validation(v, t) {
-            if(t.address.state==='NSW'){
-              return "can't live in NSW"
-            }
-            if (v.length > 10) {
-              return "Name length can not be longer than 10";
-            }
-          }
-        },
-        {
-          apiKey: "lastName",
-          label: "Last name"
-        },
-        {
-          apiKey: "students",
-          label: "Students"
-        },
-        {
-          apiKey: "address",
-          label: "Address",
-          keyToLabel: {
-            street: "Street",
-            state: "State"
-          }
-        },
-        {
-          apiKey: "available",
-          label: "Available"
-        }
-      ]
-    };
+      errors: []
+    }
   },
-
   computed: {
     teacherID() {
-      return this.$route.params.id;
+      return this.$route.params.id
     },
     teacher() {
-      let id = this.$route.params.id;
-      let selectedTeacher = this.$store.getters.getTeacherByID(id);
-
-      const t = _cloneDeep(teacherDef);
-      let teacherData = _merge(t, selectedTeacher);
-      return teacherData;
-    },
-    teachers() {
-      return this.$store.getters.teachers
+      let id = this.$route.params.id
+      return this.$store.getters.getTeacherByID(id)
     }
   },
   methods: {
-    updateTeacher({ value, objKey, id }) {
-      this.$store.commit("updateTeachers", {
-        id,
-        objKey,
-        value
-      });
-    },
-    cols(v) {
-      if (typeof v === "object" || Array.isArray(v)) {
-        return "12";
+    checkForm(e) {
+      this.errors = []
+      if (this.teacher.firstName !== 'Jack') {
+        this.errors.push({
+          ref: 'teacher.firstName',
+          message: 'First name must be Jack'
+        })
       }
-      return "3";
+
+       if (this.teacher.firstName === this.teacher.lastName) {
+        this.errors.push({
+          ref:'teacher.lastName',
+          message: 'First name can not be the same as last name.'
+        })
+      }
+
+
+      if (!this.errors.length) {
+        return true
+      }
+
+      e.preventDefault()
     },
-    getFieldValue(obj, key) {
-      return _get(obj, key);
+    hasError(path){
+      return this.errors.filter(e=>{
+        return e.ref===path
+      }).length
+    },
+    focusError(e){
+      this.$refs[e.ref].focus()
     }
   }
-};
+}
 </script>
+
+<style lang="scss" scoped>
+.input--error{
+  border: 1px solid red;
+}
+</style>

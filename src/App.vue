@@ -54,7 +54,7 @@
             <v-icon>mdi-magnify</v-icon>
           </v-btn>
 
-         
+
 
           <v-btn icon>
             <v-icon>mdi-dots-vertical</v-icon>
@@ -72,12 +72,12 @@
                 :alt="$auth.user.name"
               />
             </v-avatar>
-            <button  
+            <button
             class="pl-2"
             @click="logout"
             >Log out</button>
-            
-            
+
+
           </span>
           </span>
         </v-app-bar>
@@ -99,7 +99,7 @@ export default {
     return {
       drawer: false,
       barExtended: false,
-      
+
     };
   },
   computed: {
@@ -136,7 +136,8 @@ export default {
 
   created() {
     this.$store.dispatch("getTeachers");
-  }
+  },
+
 };
 </script>
 <style lang="scss">
