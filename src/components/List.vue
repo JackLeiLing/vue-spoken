@@ -8,14 +8,13 @@
   </v-container>
 </template>
 
-
 <script>
 export default {
   name: "List",
   props: {
     items: {
-      type: Array,
-    },
-  },
+      type: Array
+    }
+  }
 };
 </script>

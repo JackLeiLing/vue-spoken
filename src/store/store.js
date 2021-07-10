@@ -24,11 +24,14 @@ export default new Vuex.Store({
   },
   actions: {
     getTeachers({ commit }) {
-      teachersAPI.getTeachers().then((r) => {
-        commit('setTeachers', r)
-      }).catch((e)=>{
-        console.log('error', e)
-      })
+      teachersAPI
+        .getTeachers()
+        .then(r => {
+          commit("setTeachers", r);
+        })
+        .catch(e => {
+          console.log("error", e);
+        });
     }
   },
   getters: {

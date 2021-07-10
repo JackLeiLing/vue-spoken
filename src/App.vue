@@ -35,7 +35,7 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-container fluid class="pt-0 pb-0">
+    <v-container class="pt-0 pb-0">
       <v-row>
         <v-app-bar
           dark
@@ -53,42 +53,28 @@
           <v-btn icon>
             <v-icon>mdi-magnify</v-icon>
           </v-btn>
-
-
-
           <v-btn icon>
             <v-icon>mdi-dots-vertical</v-icon>
           </v-btn>
 
-            <!-- Check that the SDK client is not currently loading before accessing is methods -->
+          <!-- Check that the SDK client is not currently loading before accessing is methods -->
           <span v-if="!$auth.loading">
             <!-- show login when not authenticated -->
             <button v-if="!$auth.isAuthenticated" @click="login">Log in</button>
             <!-- show logout when authenticated -->
             <span v-if="$auth.isAuthenticated">
-            <v-avatar>
-              <img
-                :src="$auth.user.picture"
-                :alt="$auth.user.name"
-              />
-            </v-avatar>
-            <button
-            class="pl-2"
-            @click="logout"
-            >Log out</button>
-
-
-          </span>
+              <v-avatar>
+                <img :src="$auth.user.picture" :alt="$auth.user.name" />
+              </v-avatar>
+              <button class="pl-2" @click="logout">Log out</button>
+            </span>
           </span>
         </v-app-bar>
       </v-row>
     </v-container>
-
-    <v-container class="pa-0">
-      <v-row class="pt-16">
-        <router-view />
-      </v-row>
-    </v-container>
+    <div class="pt-14">
+      <router-view />
+    </div>
   </v-app>
 </template>
 
@@ -98,31 +84,24 @@ export default {
   data: () => {
     return {
       drawer: false,
-      barExtended: false,
-
+      barExtended: false
     };
   },
   computed: {
-    navLinks () {
-     if(this.$auth.isAuthenticated)
-      {
-        return [
+    navLinks() {
+      return [
         { title: "Home", icon: "mdi-home", link: "/" },
         { title: "Teachers", icon: "mdi-teach", link: "/teachers" },
         { title: "Students", icon: "mdi-school", link: "/students" },
         { title: "Classes", icon: "mdi-account-group", link: "/classes" }
-      ]
-      }
-      return [
-        { title: "Home", icon: "mdi-home", link: "/" },
-      ]
+      ];
     }
   },
   methods: {
     toggleDrawer() {
       this.drawer = !this.drawer;
     },
-     // Log the user in
+    // Log the user in
     login() {
       this.$auth.loginWithRedirect();
     },
@@ -136,8 +115,7 @@ export default {
 
   created() {
     this.$store.dispatch("getTeachers");
-  },
-
+  }
 };
 </script>
 <style lang="scss">

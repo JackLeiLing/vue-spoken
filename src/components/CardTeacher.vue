@@ -1,5 +1,5 @@
 <template>
-  <v-card :loading="loading" class="mx-auto my-12" max-width="374">
+  <v-card :loading="loading">
     <v-img height="250" :src="teacher.image"></v-img>
 
     <v-card-title>{{ teacher.firstName }} {{ teacher.lastName }}</v-card-title>
@@ -15,7 +15,7 @@
           size="14"
         ></v-rating>
 
-        <div class="grey--text ml-4">{{teacher.rating}}</div>
+        <div class="grey--text ml-4">{{ teacher.rating }}</div>
       </v-row>
 
       <div class="my-4 subtitle-1">

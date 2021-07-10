@@ -2,7 +2,7 @@
   <div class="full-width">
     <section id="about-us-section" class="full-vh" ref="aboutUs">
       <h2 ref="aboutUsTitle" class="text-h1">
-        <img src="../assets/whoKnowsLogo.svg" width="60px"/>
+        <img src="../assets/whoKnowsLogo.svg" width="60px" />
         who knows
       </h2>
       <p>we are an online teaching platform</p>
@@ -11,14 +11,21 @@
       <h2>Teachers</h2>
       <List :items="teachers">
         <template v-slot:item="{ item }">
-          <card-brief :item="item" v-animate-onscroll="{down: 'animated rotateIn', up: 'animated rotateOut' }"/>
+          <card-brief
+            :item="item"
+            v-animate-onscroll="{
+              down: 'animated rotateIn',
+              up: 'animated rotateOut'
+            }"
+          />
         </template>
       </List>
     </section>
     <section id="students-section" class="full-vh">
-      <h2 >Students</h2>
-      <div v-animate-onscroll="'animated flip'">Animate me once upon scroll</div>
-
+      <h2>Students</h2>
+      <div v-animate-onscroll="'animated flip'">
+        Animate me once upon scroll
+      </div>
     </section>
   </div>
 </template>
@@ -32,8 +39,8 @@ export default {
   computed: {
     teachers() {
       return this.$store.state.teachers;
-    },
-  },
+    }
+  }
 };
 </script>
 

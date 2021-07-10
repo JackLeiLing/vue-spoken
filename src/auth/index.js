@@ -33,7 +33,7 @@ export const useAuth0 = ({
     methods: {
       /** Authenticates the user using a popup window */
       async loginWithPopup(options, config) {
-        console.log('login with popup')
+        console.log("login with popup");
         this.popupOpen = true;
 
         try {

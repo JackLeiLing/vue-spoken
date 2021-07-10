@@ -1,4 +1,4 @@
- <template>
+<template>
   <v-card
     class="mx-auto elevation-20"
     color="blue darken-1"
@@ -47,9 +47,7 @@
 <script>
 export default {
   props: {
-    item: Object,
+    item: Object
   }
-
-
 };
 </script>
