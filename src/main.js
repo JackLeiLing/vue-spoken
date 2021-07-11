@@ -4,12 +4,16 @@ import router from './router'
 import store from './store/store'
 import vuetify from './plugins/vuetify'
 import VueAnimateOnScroll from 'vue-animate-onscroll'
+import Vuelidate from 'vuelidate'
 
 // Import the Auth0 configuration
 import { domain, clientId } from './auth_config.json'
 
 // Import the plugin here
 import { Auth0Plugin } from './auth'
+
+// use validation plugin
+Vue.use(Vuelidate)
 
 // Install the authentication plugin here
 Vue.use(Auth0Plugin, {

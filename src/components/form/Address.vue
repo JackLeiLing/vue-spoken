@@ -2,20 +2,18 @@
     <div>
         <v-row>
             <v-col>
-                <v-text-field
-                    label="Street"
-                    v-model="value.street"
-                    :rules="rules.street"
+                <v-text-field 
+                label="Street" 
+                v-model="value.street" 
+                :error-messages="streetErrors"
+                @input="$v.value.street.$touch()"
+                @blur="$v.value.street.$touch()"
                 />
             </v-col>
         </v-row>
         <v-row>
             <v-col cols="3">
-                <v-text-field
-                    label="City"
-                    v-model="value.city"
-                    :rules="rules.city"
-                />
+                <v-text-field label="City" v-model="value.city" />
             </v-col>
             <v-col cols="3">
                 <v-text-field label="State" v-model="value.state" />
@@ -31,6 +29,7 @@
 </template>
 
 <script>
+import { required } from 'vuelidate/lib/validators'
 export default {
     name: 'Address',
     props: {
@@ -41,5 +40,19 @@ export default {
             type: Object,
         },
     },
+    validations: {
+        value: {
+            street: { required },
+        },
+    },
+    computed: {
+        streetErrors(){
+            const errors = []
+            console.log(this.$v.value)
+            if (!this.$v.value.street.$dirty) return errors
+            !this.$v.value.street.required && errors.push('Street is required.')
+            return errors
+        }
+    }
 }
 </script>
