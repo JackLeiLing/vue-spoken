@@ -17,13 +17,13 @@
                 <v-stepper-items>
                     <v-stepper-content step="1">
                         <v-text-field
-                            v-model="teacherInternal.firstName"
+                            v-model="v$.teacherInternal.firstName.$model"
                             label="First name"
                             :error-messages="firstNameErrors"
                        
                         />
                         <v-text-field
-                            v-model="teacherInternal.lastName"
+                            v-model="v$.teacherInternal.lastName.$model"
                             label="Last name"
                             :error-messages="lastNameErrors"
                           
@@ -36,6 +36,7 @@
                         <mail-address
                             v-model="teacherInternal.address"
                             ref="teacherAddress"
+                            :errors="v$.teacherInternal.address.$silentErrors"
                         />
                         <v-btn color="primary" @click="currentTab = 3">
                             Continue
@@ -86,6 +87,9 @@ export default {
         teacherInternal: {
             firstName: { maxLength: maxLength(5), required },
             lastName: { maxLength: maxLength(5), required },
+            address: {
+                street: {required}
+            }
         },
     },
     props: {
@@ -93,9 +97,7 @@ export default {
     },
     computed: {
         firstNameErrors() {
-            const errors = []
-      
-            return errors
+            return this.v$.teacherInternal.firstName.$errors.map(e=>e.$message)
         },
         lastNameErrors() {
             const errors = []
