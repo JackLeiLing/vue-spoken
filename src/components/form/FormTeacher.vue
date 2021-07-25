@@ -20,15 +20,13 @@
                             v-model="teacherInternal.firstName"
                             label="First name"
                             :error-messages="firstNameErrors"
-                            @input="$v.teacherInternal.firstName.$touch()"
-                            @blur="$v.teacherInternal.firstName.$touch()"
+                       
                         />
                         <v-text-field
                             v-model="teacherInternal.lastName"
                             label="Last name"
                             :error-messages="lastNameErrors"
-                            @input="$v.teacherInternal.lastName.$touch()"
-                            @blur="$v.teacherInternal.lastName.$touch()"
+                          
                         />
                         <v-btn color="primary" @click="currentTab = 2">
                             Continue
@@ -62,15 +60,22 @@
             </v-row>
             <v-row class="primary--text">
                 {{ this.teacherInternal }}
+                <pre>
+                    {{ this.v$}}
+                </pre> 
             </v-row>
         </v-form>
 </template>
 <script>
-import { required, maxLength } from 'vuelidate/lib/validators'
+import useVuelidate from '@vuelidate/core'
+import { required, maxLength } from '@vuelidate/validators'
 import mailAddress from './Address.vue'
 import Expertises from './Expertises.vue'
 export default {
     components: { Expertises, mailAddress },
+     setup () {
+        return { v$: useVuelidate() }
+    },
     data() {
         return {
             teacherInternal: this.teacher,
@@ -89,26 +94,18 @@ export default {
     computed: {
         firstNameErrors() {
             const errors = []
-            if (!this.$v.teacherInternal.firstName.$dirty) return errors
-            !this.$v.teacherInternal.firstName.maxLength &&
-                errors.push('Name must be at most 10 characters long')
-            !this.$v.teacherInternal.firstName.required &&
-                errors.push('Name is required.')
+      
             return errors
         },
         lastNameErrors() {
             const errors = []
-            if (!this.$v.teacherInternal.lastName.$dirty) return errors
-            !this.$v.teacherInternal.lastName.maxLength &&
-                errors.push('Name must be at most 10 characters long')
-            !this.$v.teacherInternal.lastName.required &&
-                errors.push('Name is required.')
+           
             return errors
         },
     },
     methods: {
         submit() {
-            console.log(this.$refs.teacherAddress.$v)
+         
         },
     },
     watch: {

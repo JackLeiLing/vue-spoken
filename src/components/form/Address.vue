@@ -6,8 +6,7 @@
                 label="Street" 
                 v-model="value.street" 
                 :error-messages="streetErrors"
-                @input="$v.value.street.$touch()"
-                @blur="$v.value.street.$touch()"
+            
                 />
             </v-col>
         </v-row>
@@ -48,9 +47,8 @@ export default {
     computed: {
         streetErrors(){
             const errors = []
-            console.log(this.$v.value)
-            if (!this.$v.value.street.$dirty) return errors
-            !this.$v.value.street.required && errors.push('Street is required.')
+           
+        
             return errors
         }
     }
