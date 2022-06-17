@@ -1,4 +1,4 @@
- <template>
+<template>
   <v-card
     class="mx-auto elevation-20"
     color="blue darken-1"
@@ -9,8 +9,8 @@
       <v-col cols="8">
         <v-card-title>
           <div>
-            <div class="headline">Minecraft</div>
-            <div>{{ item.firstName + " " + item.lastName }}</div>
+            <div class="headline">{{ item.nativeLanguage }}</div>
+            <div>{{ item.firstName + ' ' + item.lastName }}</div>
             <div>{{ item.address.state }}</div>
           </div>
         </v-card-title>
@@ -47,9 +47,7 @@
 <script>
 export default {
   props: {
-    item: Object,
+    item: Object
   }
-
-
-};
+}
 </script>

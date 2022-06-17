@@ -1,9 +1,8 @@
-import teachersData from "../data/teachers";
+import teachersData from '../data/teachers'
 
-const getTeachers=()=> new Promise(resolve => {
+const getTeachers = () =>
+  new Promise((resolve) => {
+    resolve(teachersData)
+  })
 
-    resolve(teachersData); // Yay! Everything went well!
-
-});
-
-export default { getTeachers };
+export default { getTeachers }

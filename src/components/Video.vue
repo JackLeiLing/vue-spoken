@@ -1,38 +1,41 @@
 <template>
-  <div class="video">
-    <h1>My Video</h1>
-    <button @click="getPermissions()">Do it</button>
-    <video playsinline autoplay ref="myVideo"></video>
+  <div class="video container">
+    <h1>Online class</h1>
+    <v-row class="just-content">
+      <video playsinline autoplay ref="myVideo"></video>
+    </v-row>
+
+    <button @click="getPermissions()">Start online class</button>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Video",
+  name: 'Video',
   methods: {
     getPermissions() {
-      this.status = "FETCHING";
+      this.status = 'FETCHING'
       navigator.mediaDevices
         .getUserMedia({
           video: true,
           audio: true
         })
         .then(
-          stream => {
-            this.status = "DONE FETCHING";
-            this.handleSuccess(stream);
+          (stream) => {
+            this.status = 'DONE FETCHING'
+            this.handleSuccess(stream)
           },
-          err => {
-            console.error(err);
+          (err) => {
+            console.error(err)
           }
-        );
+        )
     },
     handleSuccess(stream) {
-      const video = this.$refs.myVideo;
-      video.srcObject = stream;
+      const video = this.$refs.myVideo
+      video.srcObject = stream
     }
   }
-};
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
