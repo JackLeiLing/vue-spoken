@@ -27,12 +27,13 @@
     </v-row>
     <v-divider dark></v-divider>
     <v-card-actions class="pa-4">
-      Rate this teacher
+      Rate {{ $auth.isAuthenticated ? '' : 'of' }} teacher
       <v-spacer></v-spacer>
       <span class="grey--text text--lighten-2 caption mr-2">
-        ({{ item.rating }})
+        {{ item.rating }}
       </span>
       <v-rating
+        v-if="$auth.isAuthenticated"
         :value="item.rating"
         background-color="white"
         color="yellow accent-4"

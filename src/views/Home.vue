@@ -1,11 +1,24 @@
 <template>
-  <div class="full-width">
-    <section class="about-us-section full-vh px-10" ref="aboutUs">
-      <h2 class="about-us-section__title text-h1" ref="aboutUsTitle">
-        Spoken
-      </h2>
-      <p>Practice your language skills with native speakers</p>
-      <List :items="teachers">
+  <div>
+    <section class="about-us-section full-vh px-10 mt10" ref="aboutUs">
+      <v-container>
+        <h2 class="about-us-section__title text-h2 my-4" ref="aboutUsTitle">
+          Our speakers
+        </h2>
+        <p>Practice your language skills natively</p>
+        <div>
+          <v-chip
+            v-for="l in allLang"
+            @click="switchLang(l)"
+            class="mr-3"
+            :key="l"
+            >{{ l }}</v-chip
+          >
+          <v-chip @click="switchLang('')">All</v-chip>
+        </div>
+      </v-container>
+
+      <List :items="filteredTeachers">
         <template v-slot:item="{ item }">
           <card-brief :item="item" />
         </template>
@@ -18,11 +31,32 @@
 import List from '@/components/List'
 import CardBrief from '@/components/CardBrief'
 import CardTeacher from '@/components/CardTeacher'
+import { mapGetters } from 'vuex'
 export default {
   components: { List, CardBrief, CardTeacher },
+  data() {
+    return {
+      selectedLang: ''
+    }
+  },
   computed: {
-    teachers() {
-      return this.$store.state.teachers
+    ...mapGetters(['teachers']),
+    filteredTeachers() {
+      if (this.selectedLang) {
+        return this.teachers.filter(
+          (t) => t.nativeLanguage === this.selectedLang
+        )
+      }
+      return this.teachers
+    },
+    allLang() {
+      const langs = this.teachers.map((t) => t.nativeLanguage)
+      return [...new Set(langs)]
+    }
+  },
+  methods: {
+    switchLang(l) {
+      this.selectedLang = l
     }
   }
 }
@@ -36,8 +70,7 @@ export default {
   color: #fff;
   border-bottom: 0;
   display: flex;
-  justify-content: center;
-  align-items: center;
+
   flex-direction: column;
 }
 .about-us-section {
@@ -53,6 +86,8 @@ export default {
     font-family: 'Shrikhand', cursive;
     font-size: 3rem;
   }
+  overflow: scroll;
+  margin-top: 64px;
 }
 
 #teachers-section {

@@ -67,9 +67,7 @@
     </v-container>
 
     <v-container class="pa-0">
-      <v-row class="pt-16">
-        <router-view />
-      </v-row>
+      <router-view />
     </v-container>
   </v-app>
 </template>

@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row>
-      <v-col v-for="i in items" :key="i.id" class="col-sm-6 col-lg-3">
+      <v-col v-for="i in items" :key="i.id" cols="12" sm="6">
         <slot name="item" :item="i"> </slot>
       </v-col>
     </v-row>
