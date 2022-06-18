@@ -15,7 +15,7 @@
           size="14"
         ></v-rating>
 
-        <div class="grey--text ml-4">{{teacher.rating}}</div>
+        <div class="grey--text ml-4">{{ teacher.rating }}</div>
       </v-row>
 
       <div class="my-4 subtitle-1">
@@ -47,14 +47,14 @@
 
     <v-card-actions>
       <v-btn color="deep-purple lighten-2" text @click="reserve">
-        Contact
+        BOOK
       </v-btn>
       <v-btn
         color="deep-purple lighten-2"
         text
         @click="showTeacher(teacher.id)"
       >
-        Details
+        Chat NOW
       </v-btn>
     </v-card-actions>
   </v-card>
@@ -72,12 +72,12 @@ export default {
 
   methods: {
     reserve() {
-      this.loading = true;
-      setTimeout(() => (this.loading = false), 2000);
+      this.loading = true
+      setTimeout(() => (this.loading = false), 2000)
     },
     showTeacher(id) {
-      this.$router.history.push(`/teacher/${id}`);
+      this.$router.history.push(`/teacher/${id}`)
     }
   }
-};
+}
 </script>

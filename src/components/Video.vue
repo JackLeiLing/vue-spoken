@@ -1,11 +1,6 @@
 <template>
-  <div class="video container">
-    <h1>Online class</h1>
-    <v-row class="just-content">
-      <video playsinline autoplay ref="myVideo"></video>
-    </v-row>
-
-    <button @click="getPermissions()">Start online class</button>
+  <div class="video container mt-10">
+    <h1 class="white--text mt-10">Online class under construction</h1>
   </div>
 </template>
 

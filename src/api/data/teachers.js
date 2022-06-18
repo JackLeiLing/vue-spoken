@@ -12,7 +12,8 @@ export default [
       street: '1',
       suburb: 'Baulkham Hills',
       state: 'NSW',
-      postCode: 2153
+      postCode: 2153,
+      country: 'Australia'
     },
     rating: 5
   },
@@ -30,7 +31,8 @@ export default [
       street: '1',
       suburb: 'Baulkham Hills',
       state: 'NSW',
-      postCode: 2153
+      postCode: 2153,
+      country: 'Australia'
     }
   },
   {
@@ -46,7 +48,8 @@ export default [
       street: '1',
       suburb: 'Baulkham Hills',
       state: 'NSW',
-      postCode: 2153
+      postCode: 2153,
+      country: 'Australia'
     },
     rating: 4.5
   },
@@ -60,10 +63,11 @@ export default [
     students: [1, 3],
     available: true,
     address: {
-      street: '1',
-      suburb: 'Baulkham Hills',
-      state: 'NSW',
-      postCode: 2153
+      street: '1 Slav Rd',
+      suburb: 'Bonjoe',
+      state: 'Frince',
+      postCode: 98989,
+      country: 'France'
     },
     rating: 5
   },
@@ -81,7 +85,8 @@ export default [
       street: '1',
       suburb: 'Baulkham Hills',
       state: 'NSW',
-      postCode: 2153
+      postCode: 2153,
+      country: 'Australia'
     }
   },
   {
@@ -97,7 +102,8 @@ export default [
       street: '1',
       suburb: 'Baulkham Hills',
       state: 'NSW',
-      postCode: 2153
+      postCode: 2153,
+      country: 'England'
     },
     rating: 4.5
   }

@@ -2,35 +2,39 @@
   <div>
     <section class="about-us-section full-vh px-10 mt10" ref="aboutUs">
       <v-container>
-        <h2 class="about-us-section__title text-h2 my-4" ref="aboutUsTitle">
+        <h2
+          class="about-us-section__title text-h2 my-4 hand-writing "
+          ref="aboutUsTitle"
+        >
           Our speakers
         </h2>
         <p>Practice your language skills natively</p>
         <div>
           <v-chip
-            v-for="l in allLang"
+            v-for="l in allLanguages"
             @click="switchLang(l)"
-            class="mr-3"
+            class="mr-3 white--text font-weight-bold text-uppercase"
             :key="l"
-            :color="selectedLang === l ? 'blue' : 'white'"
+            :color="selectedLang === l ? 'orange darken-3' : 'blue darken-3'"
             >{{ l }}</v-chip
           >
           <v-chip
             @click="switchLang('')"
-            :color="selectedLang === '' ? 'blue' : 'white'"
+            class="white--text font-weight-bold text-uppercase"
+            :color="selectedLang === '' ? 'orange darken-3' : 'blue darken-2'"
             >All</v-chip
           >
         </div>
         <div>
           <v-text-field
             color="#fff"
-            v-model="searchTerm"
+            :value="searchTerm"
+            @input="searchByName"
             prepend-icon="mdi-magnify"
             dark
           ></v-text-field>
         </div>
       </v-container>
-
       <List :items="filteredTeachers">
         <template v-slot:item="{ item }">
           <card-brief :item="item" />
@@ -53,40 +57,26 @@ export default {
       searchTerm: ''
     }
   },
+  mounted() {
+    this.$store.dispatch('searchTeachers', {})
+  },
   computed: {
-    ...mapGetters(['teachers']),
-    filteredTeachers() {
-      if (this.selectedLang && this.searchTerm) {
-        return this.searchByLang(
-          this.searchByName(this.teachers, this.searchTerm),
-          this.selectedLang
-        )
-      }
-
-      if (this.selectedLang) {
-        return this.searchByLang(this.teachers, this.selectedLang)
-      }
-      if (this.searchTerm) {
-        return this.searchByName(this.teachers, this.searchTerm)
-      }
-      return this.teachers
-    },
-    allLang() {
-      const langs = this.teachers.map((t) => t.nativeLanguage)
-      return [...new Set(langs)]
-    }
+    ...mapGetters(['teachers', 'filteredTeachers', 'allLanguages'])
   },
   methods: {
     switchLang(l) {
       this.selectedLang = l
-    },
-    searchByName(teachers, term) {
-      return teachers.filter((t) => {
-        return t.firstName.toLowerCase().includes(term.toLowerCase())
+      this.$store.dispatch('searchTeachers', {
+        language: l,
+        name: this.searchTerm
       })
     },
-    searchByLang(teachers, lang) {
-      return teachers.filter((t) => t.nativeLanguage === lang)
+    searchByName(e) {
+      this.searchTerm = e
+      this.$store.dispatch('searchTeachers', {
+        language: this.selectedLang,
+        name: e
+      })
     }
   }
 }
@@ -113,8 +103,8 @@ export default {
   background-size: cover;
   background-position: center;
   &__title {
-    font-family: 'Shrikhand', cursive;
     font-size: 3rem;
+    font-family: 'Leckerli One', cursive !important;
   }
   overflow: scroll;
   margin-top: 64px;

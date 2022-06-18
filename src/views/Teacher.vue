@@ -1,58 +1,44 @@
 <template>
-  <v-container class="editable-form white--text">
-
-    <v-row v-if="teacher">
-      <v-col>
-        <label>
-          First Name:
-          <input
-            type="text"
-            v-model="teacher.firstName"
-            :class="hasError('teacher.firstName')?'input--error':''"
-            @change="checkForm"
-            ref="teacher.firstName"
-          />
-        </label>
-      </v-col>
-      <v-col>
-        <label>
-          Last Name:
-          <input
-            type="text"
-            v-model="teacher.lastName"
-            class="white--text"
-            :class="hasError('teacher.lastName')?'input--error':''"
-            @change="checkForm"
-            ref="teacher.lastName"
-          />
-        </label>
-      </v-col>
-    </v-row>
-
-     <v-row>
-      <ul>
-        <li v-for="(e, i) in errors" :key="i">
-          <button @click="focusError(e)">{{e.message}}</button>
-        </li>
-      </ul>
-    </v-row>
-
-    <v-row>
-      <pre>
-        {{ teacher }}
-      </pre>
-    </v-row>
+  <v-container
+    fluid
+    class="white--text mt-12 d-flex align-center flex-column justify-center chat-room"
+  >
+    <div>
+      <v-row>
+        <v-col class="d-flex justify-space-between align-center">
+          <h1 class="my-3">Speak to {{ teacher.firstName }}</h1>
+          <div>
+            <v-btn
+              @click="getPermissions()"
+              fab
+              class="mr-5"
+              color="blue darken-3"
+              small
+            >
+              <v-icon color="white" size="25">mdi-video-account</v-icon>
+            </v-btn>
+            <v-btn @click="finish()" color="orange darken-3" fab small
+              ><v-icon color="white" size="25">mdi-close</v-icon></v-btn
+            >
+          </div>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col cols="12" md="6">
+          <img class="vedio" :src="teacher.image" :alt="teacher.firstName" />
+        </v-col>
+        <v-col cols="12" md="6">
+          <video class="vedio" playsinline autoplay ref="myVideo"></video>
+        </v-col>
+      </v-row>
+    </div>
   </v-container>
 </template>
 
 <script>
 export default {
   name: 'TeacherView',
-  data() {
-    return {
-      errors: []
-    }
-  },
+
   computed: {
     teacherID() {
       return this.$route.params.id
@@ -63,43 +49,45 @@ export default {
     }
   },
   methods: {
-    checkForm(e) {
-      this.errors = []
-      if (this.teacher.firstName !== 'Jack') {
-        this.errors.push({
-          ref: 'teacher.firstName',
-          message: 'First name must be Jack'
+    getPermissions() {
+      this.status = 'FETCHING'
+      navigator.mediaDevices
+        .getUserMedia({
+          video: true,
+          audio: true
         })
-      }
-
-       if (this.teacher.firstName === this.teacher.lastName) {
-        this.errors.push({
-          ref:'teacher.lastName',
-          message: 'First name can not be the same as last name.'
-        })
-      }
-
-
-      if (!this.errors.length) {
-        return true
-      }
-
-      e.preventDefault()
+        .then(
+          (stream) => {
+            this.status = 'DONE FETCHING'
+            this.handleSuccess(stream)
+          },
+          (err) => {
+            console.error(err)
+          }
+        )
     },
-    hasError(path){
-      return this.errors.filter(e=>{
-        return e.ref===path
-      }).length
+    handleSuccess(stream) {
+      const video = this.$refs.myVideo
+      video.srcObject = stream
     },
-    focusError(e){
-      this.$refs[e.ref].focus()
+    finish() {
+      this.$refs.myVideo.srcObject = null
+      this.$router.history.push('/')
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.input--error{
-  border: 1px solid red;
+.chat-room {
+  height: 100vh;
+}
+.vedio {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2 / 1;
+  object-fit: cover;
+  border: 1px solid white;
+  border-radius: 5px;
 }
 </style>

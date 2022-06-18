@@ -10,7 +10,7 @@
     >
       <v-list-item>
         <v-list-item-content>
-          <v-list-item-title class="title">Spoken</v-list-item-title>
+          <v-list-item-title class="hand-writing">Spoken</v-list-item-title>
           <v-list-item-subtitle>with Native speakers</v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
@@ -46,20 +46,28 @@
         >
           <v-app-bar-nav-icon @click="toggleDrawer"></v-app-bar-nav-icon>
 
-          <v-toolbar-title>Spoken</v-toolbar-title>
+          <v-toolbar-title class="hand-writing">Spoken</v-toolbar-title>
 
           <v-spacer></v-spacer>
 
           <!-- Check that the SDK client is not currently loading before accessing is methods -->
           <span v-if="!$auth.loading">
             <!-- show login when not authenticated -->
-            <button v-if="!$auth.isAuthenticated" @click="login">Log in</button>
+            <v-btn
+              v-if="!$auth.isAuthenticated"
+              @click="login"
+              color="purple darken-3"
+            >
+              <v-icon>mdi-login</v-icon>Log in
+            </v-btn>
             <!-- show logout when authenticated -->
             <span v-if="$auth.isAuthenticated">
+              <v-btn class="pl-2 mr-4" @click="logout" color="purple darken-3">
+                <v-icon class="mr-4">mdi-login</v-icon>Log out
+              </v-btn>
               <v-avatar>
                 <img :src="$auth.user.picture" :alt="$auth.user.name" />
               </v-avatar>
-              <button class="pl-2" @click="logout">Log out</button>
             </span>
           </span>
         </v-app-bar>
@@ -116,8 +124,12 @@ export default {
 }
 </script>
 <style lang="scss">
+@import url('https://fonts.googleapis.com/css2?family=Leckerli+One&display=swap');
 #app-spoken {
   background-image: url('https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg');
   background-size: cover;
+}
+.hand-writing {
+  font-family: 'Leckerli One', cursive !important;
 }
 </style>

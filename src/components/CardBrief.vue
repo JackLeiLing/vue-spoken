@@ -9,9 +9,12 @@
       <v-col cols="8">
         <v-card-title>
           <div>
-            <div class="headline">{{ item.nativeLanguage }}</div>
-            <div>{{ item.firstName + ' ' + item.lastName }}</div>
-            <div>{{ item.address.state }}</div>
+            <div class="caption">Native language</div>
+            <div class="h6">{{ item.nativeLanguage }}</div>
+            <div class="h4">
+              {{ item.firstName + ' ' + item.lastName }}
+            </div>
+            <div class="caption">{{ item.address.country }}</div>
           </div>
         </v-card-title>
       </v-col>
@@ -27,11 +30,6 @@
     </v-row>
     <v-divider dark></v-divider>
     <v-card-actions class="pa-4">
-      Rate {{ $auth.isAuthenticated ? '' : 'of' }} teacher
-      <v-spacer></v-spacer>
-      <span class="grey--text text--lighten-2 caption mr-2">
-        {{ item.rating }}
-      </span>
       <v-rating
         v-if="$auth.isAuthenticated"
         :value="item.rating"
@@ -42,6 +40,19 @@
         hover
         size="18"
       ></v-rating>
+      <span class="grey--text text--lighten-2 caption mr-2">
+        {{ item.rating }}
+      </span>
+      <v-spacer></v-spacer>
+      <v-btn
+        v-if="$auth.isAuthenticated"
+        light
+        fab
+        small
+        class="blue darken-4"
+        @click="showTeacher(item.id)"
+        ><v-icon size="20" color="white">mdi-message-video</v-icon></v-btn
+      >
     </v-card-actions>
   </v-card>
 </template>
@@ -49,6 +60,11 @@
 export default {
   props: {
     item: Object
+  },
+  methods: {
+    showTeacher(id) {
+      this.$router.history.push(`/teacher/${id}`)
+    }
   }
 }
 </script>
