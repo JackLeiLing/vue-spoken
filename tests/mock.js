@@ -1,4 +1,4 @@
-import {createLocalVue} from "@vue/test-utils";
+import { createLocalVue } from '@vue/test-utils'
 import VueRouter from 'vue-router'
 import Vuetify from 'vuetify'
 import Vuex from 'vuex'
@@ -11,13 +11,9 @@ Vue.use(Vuetify)
 
 const localVue = createLocalVue()
 localVue.use(VueRouter)
-const router = new VueRouter(
-  {
-    routes: [
-      { path: '/teacher/:id', name: 'teacher' }
-    ]
-  }
-)
+const router = new VueRouter({
+    routes: [{ path: '/teacher/:id', name: 'teacher' }],
+})
 
 localVue.use(Vuetify)
 localVue.use(Vuex)
@@ -25,5 +21,5 @@ localVue.use(Vuex)
 export default {
     localVue,
     router,
-    store
+    store,
 }
