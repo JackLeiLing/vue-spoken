@@ -12,9 +12,22 @@
             @click="switchLang(l)"
             class="mr-3"
             :key="l"
+            :color="selectedLang === l ? 'blue' : 'white'"
             >{{ l }}</v-chip
           >
-          <v-chip @click="switchLang('')">All</v-chip>
+          <v-chip
+            @click="switchLang('')"
+            :color="selectedLang === '' ? 'blue' : 'white'"
+            >All</v-chip
+          >
+        </div>
+        <div>
+          <v-text-field
+            color="#fff"
+            v-model="searchTerm"
+            prepend-icon="mdi-magnify"
+            dark
+          ></v-text-field>
         </div>
       </v-container>
 
@@ -36,16 +49,25 @@ export default {
   components: { List, CardBrief, CardTeacher },
   data() {
     return {
-      selectedLang: ''
+      selectedLang: '',
+      searchTerm: ''
     }
   },
   computed: {
     ...mapGetters(['teachers']),
     filteredTeachers() {
-      if (this.selectedLang) {
-        return this.teachers.filter(
-          (t) => t.nativeLanguage === this.selectedLang
+      if (this.selectedLang && this.searchTerm) {
+        return this.searchByLang(
+          this.searchByName(this.teachers, this.searchTerm),
+          this.selectedLang
         )
+      }
+
+      if (this.selectedLang) {
+        return this.searchByLang(this.teachers, this.selectedLang)
+      }
+      if (this.searchTerm) {
+        return this.searchByName(this.teachers, this.searchTerm)
       }
       return this.teachers
     },
@@ -57,6 +79,14 @@ export default {
   methods: {
     switchLang(l) {
       this.selectedLang = l
+    },
+    searchByName(teachers, term) {
+      return teachers.filter((t) => {
+        return t.firstName.toLowerCase().includes(term.toLowerCase())
+      })
+    },
+    searchByLang(teachers, lang) {
+      return teachers.filter((t) => t.nativeLanguage === lang)
     }
   }
 }
