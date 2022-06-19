@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["about"],{f820:function(e,n,t){"use strict";t.r(n);var a=function(){var e=this,n=e.$createElement;e._self._c;return e._m(0)},r=[function(){var e=this,n=e.$createElement,t=e._self._c||n;return t("div",{staticClass:"about"},[t("h1",[e._v("\n        At Spoken, you can find a native speaker to practise your foreign\n        language whenever you want!\n    ")])])}],u=t("2877"),o={},s=Object(u["a"])(o,a,r,!1,null,null,null);n["default"]=s.exports}}]);
+//# sourceMappingURL=about.85470a1b.js.map
