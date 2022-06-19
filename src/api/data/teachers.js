@@ -59,7 +59,7 @@ export default [
         lastName: 'Johe',
         nativeLanguage: 'French',
         image:
-            'https://bbts1.azureedge.net/images/p/full/2020/07/4dbb5cf7-f185-47ff-8467-c67ca7072571.jpg',
+            'https://cdn.pixabay.com/photo/2017/02/07/16/47/kingfisher-2046453_960_720.jpg',
         students: [1, 3],
         available: true,
         address: {
@@ -77,7 +77,7 @@ export default [
         lastName: 'Ling',
         nativeLanguage: 'Chinese',
         image:
-            'https://www.syfy.com/sites/syfy/files/styles/1200x680_hero/public/2019/07/spider-man.jpg',
+            'https://cdn.pixabay.com/photo/2012/06/19/10/32/owl-50267_960_720.jpg',
         students: [1],
         available: false,
         rating: 4.5,
@@ -95,7 +95,7 @@ export default [
         lastName: 'Ann',
         nativeLanguage: 'British',
         image:
-            'https://external-preview.redd.it/rVfjf9l7_iGFFV9x7352PpAb2eCCh4MCZvzPX1atciI.jpg?auto=webp&s=98e240bd52d02e22ba6c36f1609fc5097ee2767e',
+            'https://cdn.pixabay.com/photo/2014/04/29/05/29/rainbow-lorikeet-334204_960_720.jpg',
         students: [2, 1],
         available: true,
         address: {
